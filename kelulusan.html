@@ -313,7 +313,7 @@
         const NPSN_SEKOLAH = "20324178";
         
         // Target Hitung Mundur: 2 Juni 2026 pukul 15.00 WIB (WIB = UTC+7)
-        const targetDate = new Date("2026-06-02T15:00:00+07:00").getTime();
+        const targetDate = new Date("2026-05-29T15:00:00+07:00").getTime();
         let isCountdownFinished = false;
 
         // 11 DATA UTUH SISWA BERDASARKAN FILE EXCEL (100% AKURAT DAN SINKRON)
@@ -376,7 +376,7 @@
         function switchPage(pageId) {
             // Validasi Ketentuan 8: Laman Cek Kelulusan dikunci hingga hitung mundur selesai
             if (pageId === 'page-cek-kelulusan' && !isCountdownFinished) {
-                alert("Maaf, Laman Cek Kelulusan belum dapat diakses sebelum tanggal 2 Juni 2026 pukul 15.00 WIB.");
+                alert("Maaf, Laman Cek Kelulusan belum dapat diakses!");
                 return;
             }
 
