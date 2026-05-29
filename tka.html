@@ -63,7 +63,7 @@
                 <div>
                     <label class="block text-gray-600 font-semibold mb-1 text-sm">Nama Lengkap Siswa</label>
                     <input type="text" id="login-nama" placeholder="Masukkan Nama Lengkap Anda" class="w-full px-4 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 uppercase">
-                    <p class="text-xs text-gray-400 mt-1">*Gunakan huruf kapital (Contoh: TRI PUJI RAHAYU)</p>
+                    <p class="text-xs text-gray-400 mt-1">*Gunakan huruf kapital (Contoh: ZACKY ZIDAN ZAKARIA)</p>
                 </div>
                 <div id="error-cari" class="text-red-500 text-sm hidden font-medium text-center"></div>
                 <button onclick="prosesCariNisn()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-lg transition shadow">Cari NISN</button>
@@ -137,7 +137,7 @@
     </footer>
 
     <script>
-        // Database internal yang di-ekstrak langsung dari file Excel/CSV TKA Anda
+        // Database internal sinkron lengkap dengan dokumen Excel/CSV (26 Siswa)
         const dbSiswa = [
             { nisn: "0119859178", nama: "ZACKY ZIDAN ZAKARIA", ttl: "Pemalang, 31 Agustus 2011", mtk: 60, ket_mtk: "Baik", ind: 56.67, ket_ind: "Memadai" },
             { nisn: "0102465835", nama: "NESYA AMIRA AINUN MAHYA", ttl: "Pemalang, 28 Juli 2010", mtk: 20, ket_mtk: "Kurang", ind: 50, ket_ind: "Memadai" },
@@ -146,13 +146,25 @@
             { nisn: "0118392400", nama: "MOH. IHSAN", ttl: "Pelawa, 9 Juli 2011", mtk: 40, ket_mtk: "Memadai", ind: 23.33, ket_ind: "Kurang" },
             { nisn: "0112675513", nama: "MUTIYA FEBIYA WANTI", ttl: "Pemalang, 5 November 2011", mtk: 36.67, ket_mtk: "Memadai", ind: 73.33, ket_ind: "Memadai" },
             { nisn: "0114985271", nama: "RIDHO BIRRUL WALIDAEN", ttl: "Pemalang, 14 Februari 2011", mtk: 46.67, ket_mtk: "Memadai", ind: 56.67, ket_ind: "Memadai" },
+            { nisn: "0106216185", nama: "ABDULLAH BADI'I ZAKARIA", ttl: "Pemalang, 13 November 2010", mtk: 33.33, ket_mtk: "Memadai", ind: 30, ket_ind: "Kurang" },
             { nisn: "0111065322", nama: "RIZKI ARDIANTO", ttl: "Pemalang, 16 Desember 2011", mtk: 30, ket_mtk: "Kurang", ind: 63.33, ket_ind: "Memadai" },
             { nisn: "0109751099", nama: "ARFIAN KAUTSAR FAHROZZI", ttl: "Pemalang, 20 Oktober 2010", mtk: 33.33, ket_mtk: "Memadai", ind: 40, ket_ind: "Kurang" },
             { nisn: "0083229928", nama: "RINI CINTA", ttl: "Pemalang, 5 Februari 2008", mtk: 40, ket_mtk: "Memadai", ind: 46.67, ket_ind: "Kurang" },
             { nisn: "0119356894", nama: "PUTRI SELVIANA", ttl: "Pemalang, 14 Januari 2011", mtk: 33.33, ket_mtk: "Memadai", ind: 66.67, ket_ind: "Memadai" },
             { nisn: "0107821908", nama: "MUHAMMAD FATIHUL AHYAR", ttl: "Pemalang, 5 Juli 2010", mtk: 36.67, ket_mtk: "Memadai", ind: 43.33, ket_ind: "Kurang" },
             { nisn: "0118366148", nama: "RAMADHAN BAGUS PRATAMA", ttl: "Tegal, 3 Agustus 2011", mtk: 40, ket_mtk: "Memadai", ind: 63.33, ket_ind: "Memadai" },
-            { nisn: "0093882329", nama: "MUHAMAD RAFA", ttl: "Malang, 27 Desember 2009", mtk: 46.67, ket_mtk: "Memadai", ind: 60, ket_ind: "Memadai" }
+            { nisn: "0093882329", nama: "MUHAMAD RAFA", ttl: "Malang, 27 Desember 2009", mtk: 46.67, ket_mtk: "Memadai", ind: 60, ket_ind: "Memadai" },
+            { nisn: "0111769164", nama: "SYABIAN ATHARI", ttl: "Pemalang, 10 Maret 2011", mtk: 36.67, ket_mtk: "Memadai", ind: 80, ket_ind: "Baik" },
+            { nisn: "0111055655", nama: "ARDAN SAPUTRA", ttl: "Pemalang, 15 Juni 2011", mtk: 23.33, ket_mtk: "Kurang", ind: 50, ket_ind: "Memadai" },
+            { nisn: "0112973587", nama: "BELA AYU SETIANINGRUM", ttl: "Pemalang, 12 Juni 2011", mtk: 43.33, ket_mtk: "Memadai", ind: 56.67, ket_ind: "Memadai" },
+            { nisn: "0109914787", nama: "AGUSTIAN RAMADHAN HIDAYAT", ttl: "Pemalang, 27 Agustus 2010", mtk: 43.33, ket_mtk: "Memadai", ind: 86.67, ket_ind: "Baik" },
+            { nisn: "0099431112", nama: "MUHAMAD AKBAR MAULANA", ttl: "Pemalang, 13 Desember 2009", mtk: 36.67, ket_mtk: "Memadai", ind: 43.33, ket_ind: "Kurang" },
+            { nisn: "0105752463", nama: "MUHAMAD MESSI", ttl: "Pemalang, 22 Juni 2010", mtk: 46.67, ket_mtk: "Memadai", ind: 63.33, ket_ind: "Memadai" },
+            { nisn: "0106606267", nama: "APRILIA", ttl: "Jakarta, 19 Juli 2010", mtk: 53.33, ket_mtk: "Memadai", ind: 63.33, ket_ind: "Memadai" },
+            { nisn: "0112597992", nama: "ADILA JELITA", ttl: "Pemalang, 18 Maret 2011", mtk: 33.33, ket_mtk: "Memadai", ind: 66.67, ket_ind: "Memadai" },
+            { nisn: "0101491620", nama: "APRILIA KHARISMA PUTRI", ttl: "Pemalang, 29 April 2010", mtk: 43.33, ket_mtk: "Memadai", ind: 66.67, ket_ind: "Memadai" },
+            { nisn: "0116970026", nama: "BAYU IRVANES", ttl: "Pemalang, 2 Februari 2011", mtk: 36.67, ket_mtk: "Memadai", ind: 40, ket_ind: "Kurang" },
+            { nisn: "3098637715", nama: "ZIA ULHAQ", ttl: "Pemalang, 7 November 2009", mtk: 46.67, ket_mtk: "Memadai", ind: 56.67, ket_ind: "Memadai" }
         ];
 
         const NPSN_VALID = "20324178";
@@ -220,7 +232,7 @@
 
         // Proses Fitur 2: Cari NISN berdasarkan Nama Lengkap
         function prosesCariNisn() {
-            const inputNama = document.getElementById('login-nama').value.trim().toUpperCase();
+            const inputNama = document.getElementById('login-nama').value.trim().replace(/\s+/g, ' ').toUpperCase();
             const errorDiv = document.getElementById('error-cari');
 
             const siswa = dbSiswa.find(s => s.nama.toUpperCase() === inputNama);
@@ -230,7 +242,7 @@
                 document.getElementById('show-nisn').textContent = siswa.nisn;
                 switchView('hasil-cari-nisn-view');
             } else {
-                errorDiv.textContent = "Nama Lengkap tidak ditemukan. Pastikan ejaan sesuai!.";
+                errorDiv.textContent = "Nama Lengkap tidak ditemukan. Pastikan ejaan sesuai!";
                 errorDiv.classList.remove('hidden');
             }
         }
