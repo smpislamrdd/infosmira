@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Hasil TKA 2026 - SMP Islam Randudongkal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-primary { background-color: #047857; } /* Hijau Emerald */
+        .text-primary { color: #047857; }
+        .hover-primary:hover { background-color: #065f46; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans min-h-screen flex flex-col justify-between">
+
+    <header class="bg-primary text-white py-6 shadow-md text-center">
+        <div class="container mx-auto px-4 flex flex-col items-center">
+            <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center p-2 shadow-inner mb-3">
+                <span class="text-xs text-gray-400 font-bold">LOGO</span>
+            </div>
+            <h1 class="text-2xl md:text-3xl font-black tracking-wider uppercase">SMP Islam Randudongkal</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 flex-grow max-w-2xl">
+        
+        <div id="main-dashboard" class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100 text-center">
+            <div class="mb-8">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-gray-800 tracking-tight">PENGUMUMAN HASIL</h2>
+                <h3 class="text-xl md:text-2xl font-bold text-primary mt-1">TES KEMAMPUAN AKADEMIK (TKA)</h3>
+                <p class="text-lg font-semibold text-gray-500 mt-1">TAHUN 2026</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto">
+                <button onclick="switchView('form-cek-tka')" class="bg-primary hover-primary text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-md transform hover:-translate-y-0.5">
+                    🔍 CEK HASIL TKA
+                </button>
+                <button onclick="switchView('form-cari-nisn')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-md transform hover:-translate-y-0.5">
+                    🆔 CARI NISN
+                </button>
+            </div>
+        </div>
+
+        <div id="form-cek-tka" class="hidden bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-3 mb-4 text-center">Login Cek Hasil TKA</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-gray-600 font-semibold mb-1 text-sm">NISN (Username)</label>
+                    <input type="text" id="login-nisn" placeholder="Masukkan NISN Anda" class="w-full px-4 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-gray-600 font-semibold mb-1 text-sm">NPSN (Password)</label>
+                    <input type="text" id="login-npsn" placeholder="Masukkan NPSN (20324178)" class="w-full px-4 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+                <div id="error-cek" class="text-red-500 text-sm hidden font-medium text-center"></div>
+                <button onclick="prosesCekTka()" class="w-full bg-primary hover-primary text-white font-bold py-2.5 rounded-lg transition shadow">Masuk & Cek Hasil</button>
+                <button onclick="goBack()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2.5 rounded-lg transition text-center block">Kembali</button>
+            </div>
+        </div>
+
+        <div id="form-cari-nisn" class="hidden bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-3 mb-4 text-center">Login Cari NISN</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-gray-600 font-semibold mb-1 text-sm">Nama Lengkap Siswa</label>
+                    <input type="text" id="login-nama" placeholder="Masukkan Nama Lengkap Sesuai Dokumen" class="w-full px-4 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 uppercase">
+                    <p class="text-xs text-gray-400 mt-1">*Gunakan huruf kapital (Contoh: ZACKY ZIDAN ZAKARIA)</p>
+                </div>
+                <div id="error-cari" class="text-red-500 text-sm hidden font-medium text-center"></div>
+                <button onclick="prosesCariNisn()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-lg transition shadow">Cari NISN</button>
+                <button onclick="goBack()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2.5 rounded-lg transition text-center block">Kembali</button>
+            </div>
+        </div>
+
+        <div id="hasil-tka-view" class="hidden bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
+            <div class="text-center border-b pb-4 mb-6">
+                <h2 class="text-2xl font-black text-primary">HASIL TKA 2026</h2>
+                <p class="text-gray-500 text-sm">SMP ISLAM RANDUDONGKAL</p>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-xl mb-6 space-y-2 border border-gray-200">
+                <div class="flex justify-between"><span class="text-gray-500 font-medium">NAMA:</span> <span id="res-nama" class="font-bold text-gray-800"></span></div>
+                <div class="flex justify-between"><span class="text-gray-500 font-medium">NISN:</span> <span id="res-nisn" class="font-bold text-gray-800"></span></div>
+                <div class="flex justify-between"><span class="text-gray-500 font-medium">TEMPAT, TANGGAL LAHIR:</span> <span id="res-ttl" class="font-bold text-gray-800"></span></div>
+            </div>
+
+            <div class="overflow-x-auto mb-6">
+                <table class="w-full table-auto border-collapse text-left text-sm">
+                    <thead>
+                        <tr class="bg-primary text-white">
+                            <th class="p-3 rounded-tl-lg">MATA PELAJARAN</th>
+                            <th class="p-3 text-center">NILAI</th>
+                            <th class="p-3 rounded-tr-lg">KETERANGAN</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-3 font-semibold text-gray-700">Matematika</td>
+                            <td id="score-mtk" class="p-3 text-center font-bold"></td>
+                            <td id="ket-mtk" class="p-3 text-center font-medium"></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-3 font-semibold text-gray-700">Bahasa Indonesia</td>
+                            <td id="score-ind" class="p-3 text-center font-bold"></td>
+                            <td id="ket-ind" class="p-3 text-center font-medium"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button onclick="goBack()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-2.5 rounded-lg transition shadow">Kembali ke Laman Utama</button>
+        </div>
+
+        <div id="hasil-cari-nisn-view" class="hidden bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100 text-center">
+            <div class="text-center border-b pb-4 mb-6">
+                <h2 class="text-2xl font-black text-emerald-700">DATA LOGIN ANDA</h2>
+                <p class="text-gray-500 text-sm">Gunakan data berikut untuk Cek Hasil TKA</p>
+            </div>
+
+            <div class="bg-emerald-50 p-6 rounded-xl mb-6 space-y-4 border border-emerald-200 inline-block w-full max-w-sm">
+                <div>
+                    <span class="text-xs font-bold text-emerald-800 tracking-wider uppercase block mb-1">Username (NISN)</span>
+                    <span id="show-nisn" class="text-2xl font-black text-gray-800 tracking-widest"></span>
+                </div>
+                <div class="border-t border-emerald-200 pt-3">
+                    <span class="text-xs font-bold text-emerald-800 tracking-wider uppercase block mb-1">Password (NPSN)</span>
+                    <span id="show-npsn" class="text-xl font-bold text-gray-700">20324178</span>
+                </div>
+            </div>
+
+            <button onclick="goBack()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-2.5 rounded-lg transition shadow">Kembali ke Laman Utama</button>
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-800 text-gray-400 text-center py-4 text-xs">
+        <p>&copy; 2026 SMP Islam Randudongkal. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Database internal yang di-ekstrak langsung dari file Excel/CSV TKA Anda
+        const dbSiswa = [
+            { nisn: "0119859178", nama: "ZACKY ZIDAN ZAKARIA", ttl: "Pemalang, 31 Agustus 2011", mtk: 60, ket_mtk: "Baik", ind: 56.67, ket_ind: "Memadai" },
+            { nisn: "0102465835", nama: "NESYA AMIRA AINUN MAHYA", ttl: "Pemalang, 28 Juli 2010", mtk: 20, ket_mtk: "Kurang", ind: 50, ket_ind: "Memadai" },
+            { nisn: "0128110105", nama: "SAFIRA PUTRI ANGGRAENI", ttl: "Pemalang, 25 Oktober 2012", mtk: 30, ket_mtk: "Kurang", ind: 56.67, ket_ind: "Memadai" },
+            { nisn: "0101920718", nama: "RIZKY ADITYA", ttl: "Pemalang, 23 Maret 2010", mtk: 16.67, ket_mtk: "Kurang", ind: 36.67, ket_ind: "Kurang" },
+            { nisn: "0118392400", nama: "MOH. IHSAN", ttl: "Pelawa, 9 Juli 2011", mtk: 40, ket_mtk: "Memadai", ind: 23.33, ket_ind: "Kurang" },
+            { nisn: "0112675513", nama: "MUTIYA FEBIYA WANTI", ttl: "Pemalang, 5 November 2011", mtk: 36.67, ket_mtk: "Memadai", ind: 73.33, ket_ind: "Memadai" },
+            { nisn: "0114985271", nama: "RIDHO BIRRUL WALIDAEN", ttl: "Pemalang, 14 Februari 2011", mtk: 46.67, ket_mtk: "Memadai", ind: 56.67, ket_ind: "Memadai" },
+            { nisn: "0111065322", nama: "RIZKI ARDIANTO", ttl: "Pemalang, 16 Desember 2011", mtk: 30, ket_mtk: "Kurang", ind: 63.33, ket_ind: "Memadai" },
+            { nisn: "0109751099", nama: "ARFIAN KAUTSAR FAHROZZI", ttl: "Pemalang, 20 Oktober 2010", mtk: 33.33, ket_mtk: "Memadai", ind: 40, ket_ind: "Kurang" },
+            { nisn: "0083229928", nama: "RINI CINTA", ttl: "Pemalang, 5 Februari 2008", mtk: 40, ket_mtk: "Memadai", ind: 46.67, ket_ind: "Kurang" },
+            { nisn: "0119356894", nama: "PUTRI SELVIANA", ttl: "Pemalang, 14 Januari 2011", mtk: 33.33, ket_mtk: "Memadai", ind: 66.67, ket_ind: "Memadai" },
+            { nisn: "0107821908", nama: "MUHAMMAD FATIHUL AHYAR", ttl: "Pemalang, 5 Juli 2010", mtk: 36.67, ket_mtk: "Memadai", ind: 43.33, ket_ind: "Kurang" },
+            { nisn: "0118366148", nama: "RAMADHAN BAGUS PRATAMA", ttl: "Tegal, 3 Agustus 2011", mtk: 40, ket_mtk: "Memadai", ind: 63.33, ket_ind: "Memadai" },
+            { nisn: "0093882329", nama: "MUHAMAD RAFA", ttl: "Malang, 27 Desember 2009", mtk: 46.67, ket_mtk: "Memadai", ind: 60, ket_ind: "Memadai" }
+        ];
+
+        const NPSN_VALID = "20324178";
+
+        // Navigasi Antar Tampilan
+        function switchView(viewId) {
+            document.getElementById('main-dashboard').classList.add('hidden');
+            document.getElementById('form-cek-tka').classList.add('hidden');
+            document.getElementById('form-cari-nisn').classList.add('hidden');
+            document.getElementById('hasil-tka-view').classList.add('hidden');
+            document.getElementById('hasil-cari-nisn-view').classList.add('hidden');
+
+            document.getElementById(viewId).classList.remove('hidden');
+        }
+
+        // Kembali ke Menu Utama
+        function goBack() {
+            document.getElementById('login-nisn').value = "";
+            document.getElementById('login-npsn').value = "";
+            document.getElementById('login-nama').value = "";
+            document.getElementById('error-cek').classList.add('hidden');
+            document.getElementById('error-cari').classList.add('hidden');
+            switchView('main-dashboard');
+        }
+
+        // Proses Fitur 1: Cek Hasil TKA
+        function prosesCekTka() {
+            const inputNisn = document.getElementById('login-nisn').value.trim();
+            const inputNpsn = document.getElementById('login-npsn').value.trim();
+            const errorDiv = document.getElementById('error-cek');
+
+            if (inputNpsn !== NPSN_VALID) {
+                errorDiv.textContent = "NPSN (Password) salah atau tidak valid!";
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            const siswa = dbSiswa.find(s => s.nisn === inputNisn);
+
+            if (siswa) {
+                errorDiv.classList.add('hidden');
+                
+                // Set konten hasil pencarian
+                document.getElementById('res-nama').textContent = siswa.nama;
+                document.getElementById('res-nisn').textContent = siswa.nisn;
+                document.getElementById('res-ttl').textContent = siswa.ttl;
+                
+                // Mengubah nilai menjadi 2 angka di belakang koma secara otomatis (.toFixed(2))
+                document.getElementById('score-mtk').textContent = Number(siswa.mtk).toFixed(2);
+                document.getElementById('score-ind').textContent = Number(siswa.ind).toFixed(2);
+                
+                document.getElementById('ket-mtk').textContent = siswa.ket_mtk;
+                document.getElementById('ket-ind').textContent = siswa.ket_ind;
+
+                // Pewarnaan Badge Keterangan agar menarik
+                mewarnaiKeterangan('ket-mtk', siswa.ket_mtk);
+                mewarnaiKeterangan('ket-ind', siswa.ket_ind);
+
+                switchView('hasil-tka-view');
+            } else {
+                errorDiv.textContent = "NISN tidak ditemukan di dalam database.";
+                errorDiv.classList.remove('hidden');
+            }
+        }
+
+        // Proses Fitur 2: Cari NISN berdasarkan Nama Lengkap
+        function prosesCariNisn() {
+            const inputNama = document.getElementById('login-nama').value.trim().toUpperCase();
+            const errorDiv = document.getElementById('error-cari');
+
+            const siswa = dbSiswa.find(s => s.nama.toUpperCase() === inputNama);
+
+            if (siswa) {
+                errorDiv.classList.add('hidden');
+                document.getElementById('show-nisn').textContent = siswa.nisn;
+                switchView('hasil-cari-nisn-view');
+            } else {
+                errorDiv.textContent = "Nama Lengkap tidak ditemukan. Pastikan ejaan sesuai file Excel.";
+                errorDiv.classList.remove('hidden');
+            }
+        }
+
+        // Fungsi pembantu dekorasi teks keterangan kategori
+        function mewarnaiKeterangan(elementId, status) {
+            const el = document.getElementById(elementId);
+            if (status === "Baik" || status === "Memadai") {
+                el.className = "p-3 text-center font-bold text-green-600 bg-green-50 rounded-lg";
+            } else {
+                el.className = "p-3 text-center font-bold text-red-600 bg-red-50 rounded-lg";
+            }
+        }
+    </script>
+</body>
+</html>
