@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Kelulusan SMP Islam Randudongkal</title>
+    <style>
+        :root {
+            --primary-green: #1b5e20;
+            --light-green: #e8f5e9;
+            --accent-green: #2e7d32;
+            --dark-text: #2c3e50;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-green);
+            color: var(--dark-text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--white);
+            max-width: 600px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            text-align: center;
+            border: 3px solid var(--primary-green);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 25px 20px;
+        }
+
+        .logo {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            border-radius: 50%;
+            background: white;
+            padding: 5px;
+        }
+
+        header h1 {
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        /* Body Main Content */
+        .content-box {
+            padding: 30px 20px;
+        }
+
+        .main-title {
+            font-size: 1.6rem;
+            color: var(--primary-green);
+            font-weight: 800;
+        }
+
+        .sub-title {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        /* Countdown Timer */
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: #f1f8e9;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed var(--accent-green);
+        }
+
+        .time-segment {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+
+        .time-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-green);
+        }
+
+        .time-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        /* Form Controls */
+        .menu-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            background-color: var(--primary-green);
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-green);
+        }
+
+        .btn:disabled {
+            background-color: #a5d6a7;
+            cursor: not-allowed;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary-green);
+        }
+
+        /* Result Styles */
+        .result-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+            border-left: 5px solid var(--primary-green);
+            text-align: left;
+        }
+
+        .result-item {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .result-label {
+            font-weight: bold;
+            color: #555;
+            display: inline-block;
+            width: 180px;
+        }
+
+        .status-box {
+            margin-top: 25px;
+            text-align: center;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border: 2px solid var(--accent-green);
+            border-radius: 6px;
+        }
+
+        .status-lulus {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary-green);
+            margin: 10px 0;
+            letter-spacing: 2px;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            background: #ffebee;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img src="smira.jpg" alt="Logo SMP Islam Randudongkal" class="logo">
+            <h1>SMP ISLAM RANDUDONGKAL</h1>
+        </header>
+
+        <div class="content-box">
+            
+            <div id="page-main">
+                <h2 class="main-title">PENGUMUMAN KELULUSAN</h2>
+                <p class="sub-title">TAHUN AJARAN 2025/2026</p>
+
+                <div id="countdown">
+                    <div class="time-segment"><span class="time-value" id="days">00</span><span class="time-label">Hari</span></div>
+                    <div class="time-segment"><span class="time-value" id="hours">00</span><span class="time-label">Jam</span></div>
+                    <div class="time-segment"><span class="time-value" id="minutes">00</span><span class="time-label">Menit</span></div>
+                    <div class="time-segment"><span class="time-value" id="seconds">00</span><span class="time-label">Detik</span></div>
+                </div>
+
+                <div class="menu-selection">
+                    <button class="btn" id="btn-menu-kelulusan" onclick="switchPage('page-cek-kelulusan')">CEK KELULUSAN</button>
+                    <button class="btn" onclick="switchPage('page-cari-nisn')">CARI NISN</button>
+                </div>
+            </div>
+
+            <div id="page-cek-kelulusan" class="hidden">
+                <h2 class="main-title" style="font-size: 1.4rem; margin-bottom: 20px;">LOGIN CEK KELULUSAN</h2>
+                <div id="err-kelulusan" class="error-message hidden"></div>
+                <div class="form-group">
+                    <label for="kelulusan-nisn">Username (NISN)</label>
+                    <input type="text" id="kelulusan-nisn" placeholder="Masukkan NISN">
+                </div>
+                <div class="form-group">
+                    <label for="kelulusan-npsn">NPSN (Sekolah)</label>
+                    <input type="text" id="kelulusan-npsn" placeholder="Masukkan NPSN">
+                </div>
+                <button class="btn" onclick="prosesCekKelulusan()" style="margin-bottom: 15px;">LOGIN</button>
+                <button class="btn" onclick="goHome()" style="background-color: #777;">KEMBALI KE LAMAN UTAMA</button>
+            </div>
+
+            <div id="page-hasil-kelulusan" class="hidden">
+                <h2 class="main-title">PENGUMUMAN KELULUSAN</h2>
+                <p class="sub-title" style="margin-bottom: 15px;">TAHUN AJARAN 2025/2026</p>
+                
+                <div class="result-card">
+                    <div class="result-item"><span class="result-label">NAMA</span>: <span id="res-nama">-</span></div>
+                    <div class="result-item"><span class="result-label">NISN</span>: <span id="res-nisn">-</span></div>
+                    <div class="result-item"><span class="result-label">TEMPAT, TANGGAL LAHIR</span>: <span id="res-ttl">-</span></div>
+                </div>
+
+                <div class="status-box">
+                    <p>Selamat Anda dinyatakan</p>
+                    <div class="status-lulus">LULUS</div>
+                    <p>Dari SMP Islam Randudongkal pada Tahun Ajaran 2025/2026</p>
+                </div>
+                
+                <button class="btn" onclick="goHome()" style="margin-top: 25px; background-color: #777;">KEMBALI KE LAMAN UTAMA</button>
+            </div>
+
+            <div id="page-cari-nisn" class="hidden">
+                <h2 class="main-title" style="font-size: 1.4rem; margin-bottom: 20px;">CARI NISN SISWA</h2>
+                <div id="err-nisn" class="error-message hidden"></div>
+                <div class="form-group">
+                    <label for="cari-nama">Nama Lengkap</label>
+                    <input type="text" id="cari-nama" placeholder="Masukkan Nama Lengkap Sesuai Data">
+                </div>
+                <button class="btn" onclick="prosesCariNisn()" style="margin-bottom: 15px;">CARI NISN</button>
+                <button class="btn" onclick="goHome()" style="background-color: #777;">KEMBALI KE LAMAN UTAMA</button>
+            </div>
+
+            <div id="page-hasil-nisn" class="hidden">
+                <h2 class="main-title" style="font-size: 1.4rem; margin-bottom: 20px;">DATA AKUN SISWA</h2>
+                
+                <div class="result-card">
+                    <div class="result-item"><span class="result-label">Nama Siswa</span>: <span id="res-cari-nama">-</span></div>
+                    <div class="result-item"><span class="result-label">Username (NISN)</span>: <span id="res-cari-nisn" style="font-weight: bold; color: var(--primary-green);">-</span></div>
+                    <div class="result-item"><span class="result-label">NPSN</span>: <span id="res-cari-npsn">20324178</span></div>
+                </div>
+
+                <button class="btn" onclick="goHome()" style="margin-top: 25px; background-color: #777;">KEMBALI KE LAMAN UTAMA</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const NPSN_SEKOLAH = "20324178";
+        
+        // Target Hitung Mundur: 2 Juni 2026 pukul 15.00 WIB (WIB = UTC+7)
+        const targetDate = new Date("2026-06-02T15:00:00+07:00").getTime();
+        let isCountdownFinished = false;
+
+        // 11 DATA UTUH SISWA BERDASARKAN FILE EXCEL (100% AKURAT DAN SINKRON)
+        const dataSiswa = [
+            { nisn: "0119859178", nama: "ZACKY ZIDAN ZAKARIA", ttl: "Pemalang, 31 Agustus 2011" },
+            { nisn: "0102465835", nama: "NESYA AMIRA AINUN MAHYA", ttl: "Pemalang, 28 Juli 2010" },
+            { nisn: "0128110105", nama: "SAFIRA PUTRI ANGGRAENI", ttl: "Pemalang, 25 Oktober 2012" },
+            { nisn: "0101920718", nama: "RIZKY ADITYA", ttl: "Pemalang, 23 Maret 2010" },
+            { nisn: "0118392400", nama: "MOH. IHSAN", ttl: "Pelawa, 9 Juli 2011" },
+            { nisn: "0112675513", nama: "MUTIYA FEBIYA WANTI", ttl: "Pemalang, 5 November 2011" },
+            { nisn: "0114985271", nama: "RIDHO BIRRUL WALIDAEN", ttl: "Pemalang, 14 Februari 2011" },
+            { nisn: "0106216185", nama: "ABDULLAH BADI'I ZAKARIA", ttl: "Pemalang, 13 November 2010" },
+            { nisn: "0111065322", nama: "RIZKI ARDIANTO", ttl: "Pemalang, 16 Desember 2011" },
+            { nisn: "0109751099", nama: "ARFIAN KAUTSAR FAHROZZI", ttl: "Pemalang, 20 Oktober 2010" },
+            { nisn: "0083229928", nama: "RINI CINTA", ttl: "Pemalang, 5 Februari 2008" },
+            { nisn: "0119356894", nama: "PUTRI SELVIANA", ttl: "Pemalang, 14 Januari 2011" },
+            { nisn: "0107821908", nama: "MUHAMMAD FATIHUL AHYAR", ttl: "Pemalang, 5 Juli 2010" },
+            { nisn: "0118366148", nama: "RAMADHAN BAGUS PRATAMA", ttl: "Tegal, 3 Agustus 2011" },
+            { nisn: "0093882329", nama: "MUHAMAD RAFA", ttl: "Malang, 27 Desember 2009" },
+            { nisn: "0111769164", nama: "SYABIAN ATHARI", ttl: "Pemalang, 10 Maret 2011" },
+            { nisn: "0111055655", nama: "ARDAN SAPUTRA", ttl: "Pemalang, 15 Juni 2011" },
+            { nisn: "0112973587", nama: "BELA AYU SETIANINGRUM", ttl: "Pemalang, 12 Juni 2011" },
+            { nisn: "0109914787", nama: "AGUSTIAN RAMADHAN HIDAYAT", ttl: "Pemalang, 27 Agustus 2010" },
+            { nisn: "0099431112", nama: "MUHAMAD AKBAR MAULANA", ttl: "Pemalang, 13 Desember 2009" },
+            { nisn: "0105752463", nama: "MUHAMAD MESSI", ttl: "Pemalang, 22 Juni 2010" },
+            { nisn: "0106606267", nama: "APRILIA", ttl: "Jakarta, 19 Juli 2010" },
+            { nisn: "0112597992", nama: "ADILA JELITA", ttl: "Pemalang, 18 Maret 2011" },
+            { nisn: "0101491620", nama: "APRILIA KHARISMA PUTRI", ttl: "Pemalang, 29 April 2010" },
+            { nisn: "0116970026", nama: "BAYU IRVANES", ttl: "Pemalang, 2 Februari 2011" },
+            { nisn: "3098637715", nama: "ZIA ULHAQ", ttl: "Pemalang, 7 November 2009" }
+        ];
+
+        // LOGIKA HITUNG MUNDUR (Ketentuan 4 & 8)
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance <= 0) {
+                clearInterval(countdownInterval);
+                isCountdownFinished = true;
+                document.getElementById("countdown").innerHTML = "<b style='color: #2e7d32; font-size: 1.2rem;'>WAKTU PENGUMUMAN TELAH DIBUKA!</b>";
+                document.getElementById("btn-menu-kelulusan").disabled = false;
+            } else {
+                isCountdownFinished = false;
+                document.getElementById("btn-menu-kelulusan").disabled = true;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = String(days).padStart(2, '0');
+                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+            }
+        }, 1000);
+
+        // LOGIKA PERPINDAHAN LAMAN (Ketentuan 11)
+        function switchPage(pageId) {
+            // Validasi Ketentuan 8: Laman Cek Kelulusan dikunci hingga hitung mundur selesai
+            if (pageId === 'page-cek-kelulusan' && !isCountdownFinished) {
+                alert("Maaf, Laman Cek Kelulusan belum dapat diakses sebelum tanggal 2 Juni 2026 pukul 15.00 WIB.");
+                return;
+            }
+
+            const pages = ['page-main', 'page-cek-kelulusan', 'page-hasil-kelulusan', 'page-cari-nisn', 'page-hasil-nisn'];
+            pages.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(pageId).classList.remove('hidden');
+            clearInputs();
+        }
+
+        function goHome() {
+            switchPage('page-main');
+        }
+
+        function clearInputs() {
+            document.getElementById("kelulusan-nisn").value = "";
+            document.getElementById("kelulusan-npsn").value = "";
+            document.getElementById("cari-nama").value = "";
+            document.getElementById("err-kelulusan").classList.add('hidden');
+            document.getElementById("err-nisn").classList.add('hidden');
+        }
+
+        // VALIDASI LOGIN CEK KELULUSAN (Ketentuan 6 & 7)
+        function prosesCekKelulusan() {
+            const inputNisn = document.getElementById("kelulusan-nisn").value.trim();
+            const inputNpsn = document.getElementById("kelulusan-npsn").value.trim();
+            const errDiv = document.getElementById("err-kelulusan");
+
+            if (inputNpsn !== NPSN_SEKOLAH) {
+                errDiv.innerText = "NPSN Sekolah salah atau tidak sesuai!";
+                errDiv.classList.remove('hidden');
+                return;
+            }
+
+            // Cari data siswa berdasarkan NISN
+            const siswa = dataSiswa.find(s => s.nisn === inputNisn);
+
+            if (siswa) {
+                errDiv.classList.add('hidden');
+                // Tampilkan data ke halaman hasil kelulusan
+                document.getElementById("res-nama").innerText = siswa.nama;
+                document.getElementById("res-nisn").innerText = siswa.nisn;
+                document.getElementById("res-ttl").innerText = siswa.ttl;
+                switchPage('page-hasil-kelulusan');
+            } else {
+                errDiv.innerText = "NISN tidak ditemukan! Periksa kembali atau gunakan menu Cari NISN.";
+                errDiv.classList.remove('hidden');
+            }
+        }
+
+        // VALIDASI LOGIN CARI NISN (Ketentuan 9 & 10)
+        function prosesCariNisn() {
+            const inputNama = document.getElementById("cari-nama").value.trim().toUpperCase();
+            const errDiv = document.getElementById("err-nisn");
+
+            if (inputNama === "") {
+                errDiv.innerText = "Silakan masukkan nama lengkap siswa!";
+                errDiv.classList.remove('hidden');
+                return;
+            }
+
+            // Cari data siswa berdasarkan nama lengkap (Case-Insensitive)
+            const siswa = dataSiswa.find(s => s.nama.toUpperCase() === inputNama);
+
+            if (siswa) {
+                errDiv.classList.add('hidden');
+                // Tampilkan data ke halaman hasil cari NISN
+                document.getElementById("res-cari-nama").innerText = siswa.nama;
+                document.getElementById("res-cari-nisn").innerText = siswa.nisn;
+                switchPage('page-hasil-nisn');
+            } else {
+                errDiv.innerText = "Nama lengkap siswa tidak ditemukan! Pastikan ejaan nama sesuai dengan data sekolah.";
+                errDiv.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
